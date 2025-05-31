@@ -36,4 +36,5 @@ node server.js
 
 ### Go to
 ```bash
-`localhost:5173`
+localhost:5173
+```
