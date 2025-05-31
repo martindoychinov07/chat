@@ -32,7 +32,7 @@ async function registerUser(req, res) {
 
     const user = result.rows[0];
     const token = jwt.sign({ userId: user.id, username: user.username }, jwtSecret, {
-      expiresIn: "1h",
+      expiresIn: "4h",
     });
 
     res.status(201).json({ token });
