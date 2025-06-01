@@ -38,3 +38,12 @@ node server.js
 ```bash
 localhost:5173
 ```
+
+### How to run unit tests
+Install ```bash 
+npm install --save-dev node-mocks-http
+```
+
+Run ```bash
+npm test
+```
