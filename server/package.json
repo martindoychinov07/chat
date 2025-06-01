@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +21,7 @@
     "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
+    "node-mocks-http": "^1.17.2",
     "nodemon": "^3.1.10"
   }
 }
