@@ -13,7 +13,7 @@ PG_DATABASE=postgres
 JWT_SECRET=your-secret-key
 ```
 
-Replace PG_PASSWORD and JWT_SECRET with your password and key
+Replace PG_PASSWORD and JWT_SECRET with your password and key.
 
 ## How to run it
 ```bash
