@@ -1,46 +1,35 @@
 import js from '@eslint/js';
 import globals from 'globals';
-import babelParser from '@babel/eslint-parser';
-import reactPlugin from 'eslint-plugin-react';
-import reactHooksPlugin from 'eslint-plugin-react-hooks';
-import prettierPlugin from 'eslint-plugin-prettier';
+import sonarjs from 'eslint-plugin-sonarjs';
 
 export default [
   js.configs.recommended,
   {
+    files: ['**/*.js', '**/*.jsx'],
     languageOptions: {
-      parser: babelParser,
       parserOptions: {
-        requireConfigFile: false,
-        ecmaVersion: 2020,
+        ecmaVersion: 2021,
         sourceType: 'module',
-        ecmaFeatures: {
-          jsx: true,
-        },
+        ecmaFeatures: { jsx: true },
       },
       globals: {
         ...globals.browser,
         ...globals.node,
-        jest: true,
       },
     },
     plugins: {
-      react: reactPlugin,
-      'react-hooks': reactHooksPlugin,
-      prettier: prettierPlugin,
+      sonarjs,
     },
-    rules: {
-      'prettier/prettier': 'error',
-      'react/prop-types': 'off',
-      'react-hooks/rules-of-hooks': 'error',
-      'react-hooks/exhaustive-deps': 'warn',
-      quotes: ['error', 'single'],
-      semi: ['error', 'always'],
-    },
-    settings: {
-      react: {
-        version: 'detect',
-      },
-    },
+rules: {
+  // Accepts options object
+  'sonarjs/no-duplicate-string': ['warn', { threshold: 3 }],
+
+  // Only number or string severity allowed (0/off, 1/warn, 2/error or 'off', 'warn', 'error')
+  'sonarjs/cognitive-complexity': ['warn', 15],
+
+  semi: ['error', 'always'],
+  quotes: ['error', 'single'],
+}
+
   },
 ];
