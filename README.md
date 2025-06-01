@@ -40,10 +40,12 @@ localhost:5173
 ```
 
 ### How to run unit tests
-Install ```bash 
+Install
+```bash 
 npm install --save-dev node-mocks-http
 ```
 
-Run ```bash
+Run
+```bash
 npm test
 ```
