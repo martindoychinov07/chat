@@ -1,11 +1,11 @@
-import axios from "axios";
+import axios from 'axios';
 
 const api = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: 'http://localhost:5000/api',
 });
 
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem('token');
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
@@ -13,7 +13,7 @@ api.interceptors.request.use((config) => {
 });
 
 export const getUsers = () => {
-  return api.get("/users");
+  return api.get('/users');
 };
 
 export const getMessages = (recipientId) => {
@@ -21,7 +21,7 @@ export const getMessages = (recipientId) => {
 };
 
 export const sendMessage = (receiverId, message) => {
-  api.post("/messages", { receiverId, message });
+  api.post('/messages', { receiverId, message });
 };
 
 export default api;

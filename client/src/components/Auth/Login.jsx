@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import api from "../../api/api";
-import "./Login.css"
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import api from '../../api/api';
+import './Login.css';
 
 const Login = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    username: "",
-    password: "",
+    username: '',
+    password: '',
   });
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
 
   const handleChange = (e) => {
     setFormData((prev) => ({
@@ -20,14 +20,14 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
+    setError('');
 
     try {
-      const res = await api.post("/auth/login", formData);
-      localStorage.setItem("token", res.data.token);
-      navigate("/chat");
+      const res = await api.post('/auth/login', formData);
+      localStorage.setItem('token', res.data.token);
+      navigate('/chat');
     } catch (err) {
-      setError(err.response?.data?.message || "Login failed");
+      setError(err.response?.data?.message || 'Login failed');
     }
   };
 

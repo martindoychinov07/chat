@@ -1,22 +1,24 @@
-const pool = require("../db");
+const pool = require('../db');
 
 async function sendMessage(req, res) {
   const senderId = req.user.userId;
   const { receiverId, message } = req.body;
 
   if (!receiverId || !message) {
-    return res.status(400).json({ message: "receiverId and message are required" });
+    return res
+      .status(400)
+      .json({ message: 'receiverId and message are required' });
   }
 
   try {
     await pool.query(
-      `INSERT INTO messages (sender_id, receiver_id, message) VALUES ($1, $2, $3)`,
+      'INSERT INTO messages (sender_id, receiver_id, message) VALUES ($1, $2, $3)',
       [senderId, receiverId, message]
     );
-    res.status(201).json({ message: "Message sent" });
+    res.status(201).json({ message: 'Message sent' });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Server error" });
+    res.status(500).json({ message: 'Server error' });
   }
 }
 
@@ -36,7 +38,7 @@ async function getMessages(req, res) {
     res.json(result.rows);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Server error" });
+    res.status(500).json({ message: 'Server error' });
   }
 }
 

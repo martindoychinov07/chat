@@ -1,4 +1,7 @@
-const { sendMessage, getMessages } = require('../controllers/messageController');
+const {
+  sendMessage,
+  getMessages,
+} = require('../controllers/messageController');
 const httpMocks = require('node-mocks-http');
 const pool = require('../db');
 
@@ -14,7 +17,7 @@ describe('Message Controller', () => {
       const req = httpMocks.createRequest({
         method: 'POST',
         user: { userId: 1 },
-        body: { message: '' }
+        body: { message: '' },
       });
       const res = httpMocks.createResponse();
 
@@ -29,7 +32,7 @@ describe('Message Controller', () => {
       const req = httpMocks.createRequest({
         method: 'POST',
         user: { userId: 1 },
-        body: { receiverId: 2, message: 'Hello' }
+        body: { receiverId: 2, message: 'Hello' },
       });
       const res = httpMocks.createResponse();
 
@@ -48,8 +51,8 @@ describe('Message Controller', () => {
           sender_id: 1,
           receiver_id: 2,
           message: 'Hi',
-          created_at: now.toISOString()
-        }
+          created_at: now.toISOString(),
+        },
       ];
 
       pool.query.mockResolvedValue({ rows: fakeMessages });
@@ -57,7 +60,7 @@ describe('Message Controller', () => {
       const req = httpMocks.createRequest({
         method: 'GET',
         user: { userId: 1 },
-        params: { userId: 2 }
+        params: { userId: 2 },
       });
       const res = httpMocks.createResponse();
 

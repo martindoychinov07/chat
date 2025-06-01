@@ -17,14 +17,16 @@ describe('Auth Controller', () => {
     it('should return 400 if missing fields', async () => {
       const req = httpMocks.createRequest({
         method: 'POST',
-        body: { username: '', email: '', password: '' }
+        body: { username: '', email: '', password: '' },
       });
       const res = httpMocks.createResponse();
 
       await registerUser(req, res);
 
       expect(res.statusCode).toBe(400);
-      expect(res._getJSONData().message).toBe("Please provide username, email, and password");
+      expect(res._getJSONData().message).toBe(
+        'Please provide username, email, and password'
+      );
     });
 
     it('should return 400 if user exists', async () => {
@@ -32,14 +34,16 @@ describe('Auth Controller', () => {
 
       const req = httpMocks.createRequest({
         method: 'POST',
-        body: { username: 'test', email: 'test@test.com', password: '123' }
+        body: { username: 'test', email: 'test@test.com', password: '123' },
       });
       const res = httpMocks.createResponse();
 
       await registerUser(req, res);
 
       expect(res.statusCode).toBe(400);
-      expect(res._getJSONData().message).toBe("Username or email already exists");
+      expect(res._getJSONData().message).toBe(
+        'Username or email already exists'
+      );
     });
 
     it('should register a user and return token', async () => {
@@ -52,7 +56,7 @@ describe('Auth Controller', () => {
 
       const req = httpMocks.createRequest({
         method: 'POST',
-        body: { username: 'test', email: 'test@test.com', password: '123' }
+        body: { username: 'test', email: 'test@test.com', password: '123' },
       });
       const res = httpMocks.createResponse();
 
@@ -67,7 +71,7 @@ describe('Auth Controller', () => {
     it('should return 400 if missing fields', async () => {
       const req = httpMocks.createRequest({
         method: 'POST',
-        body: { username: '', password: '' }
+        body: { username: '', password: '' },
       });
       const res = httpMocks.createResponse();
 
@@ -81,7 +85,7 @@ describe('Auth Controller', () => {
 
       const req = httpMocks.createRequest({
         method: 'POST',
-        body: { username: 'missing', password: '123' }
+        body: { username: 'missing', password: '123' },
       });
       const res = httpMocks.createResponse();
 
@@ -92,7 +96,7 @@ describe('Auth Controller', () => {
 
     it('should login user and return token', async () => {
       pool.query.mockResolvedValue({
-        rows: [{ id: 1, username: 'test', password: 'hashed' }]
+        rows: [{ id: 1, username: 'test', password: 'hashed' }],
       });
 
       bcrypt.compare.mockResolvedValue(true);
@@ -100,7 +104,7 @@ describe('Auth Controller', () => {
 
       const req = httpMocks.createRequest({
         method: 'POST',
-        body: { username: 'test', password: '123' }
+        body: { username: 'test', password: '123' },
       });
       const res = httpMocks.createResponse();
 
