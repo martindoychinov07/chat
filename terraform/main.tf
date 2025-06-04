@@ -27,8 +27,8 @@ resource "docker_container" "postgres" {
   }
   env = [
     "POSTGRES_USER=postgres",
-    "POSTGRES_PASSWORD=martin123",
-    "POSTGRES_DB=chatdb"
+    "POSTGRES_PASSWORD=your-password",
+    "POSTGRES_DB=postgres"
   ]
   ports {
     internal = 5432
@@ -54,12 +54,14 @@ resource "docker_container" "backend" {
     internal = 5000
     external = 5000
   }
+  
   env = [
-    "DB_HOST=chat-postgres",
-    "DB_USER=postgres",
-    "DB_PASSWORD=martin123",
-    "DB_NAME=chatdb"
+    "PG_HOST=chat-postgres",
+    "PG_USER=postgres",
+    "PG_PASSWORD=your-password",
+    "PG_DATABASE=postgres"
   ]
+
   depends_on = [docker_container.postgres]
 }
 
@@ -77,9 +79,9 @@ resource "docker_container" "frontend" {
   networks_advanced {
     name = docker_network.chat_net.name
   }
-  ports {
-    internal = 3000
-    external = 3000
-  }
+ports {
+  internal = 80
+  external = 3000
+}
   depends_on = [docker_container.backend]
 }

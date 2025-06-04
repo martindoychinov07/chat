@@ -6,7 +6,7 @@ services:
     restart: always
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: martin123
+      POSTGRES_PASSWORD: your-password
       POSTGRES_DB: postgres
     ports:
       - "5432:5432"
@@ -19,7 +19,7 @@ services:
     environment:
       DB_HOST: postgres
       DB_USER: postgres
-      DB_PASSWORD: martin123
+      DB_PASSWORD: your-password
       DB_NAME: postgres
     depends_on:
       - postgres

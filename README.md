@@ -66,3 +66,12 @@ docker exec -it chat-postgres-1 psql -U postgres -d postgres
 run the sql commands from the txt file
 docker-compose up --build
 ```
+
+### How to run it (with Terraform)
+```bash
+cd project-directory
+terraform init
+docker exec -it chat-postgres-1 psql -U postgres -d postgres
+run the sql commands from the txt file
+terraform apply
+```
