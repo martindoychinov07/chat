@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: martin123
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ./server
+    environment:
+      DB_HOST: postgres
+      DB_USER: postgres
+      DB_PASSWORD: martin123
+      DB_NAME: postgres
+    depends_on:
+      - postgres
+    ports:
+      - "5000:5000"
+
+
+  frontend:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "3000:80"
+
+volumes:
+  pgdata:
